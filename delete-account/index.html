@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Yastık hesabı ve verileri silme talebi">
+  <title>Yastık | Hesap ve Veri Silme</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #fbf7f2;
+      --card: #fffdf9;
+      --ink: #292329;
+      --muted: #746c72;
+      --line: #e8ddd2;
+      --dark: #312a31;
+      --gold: #a5792c;
+      --coral: #bd5a47;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+    a { color: #805d20; text-underline-offset: 3px; }
+    .shell { width: min(100% - 28px, 780px); margin: 0 auto; padding: 34px 0 70px; }
+    .back { display: inline-block; margin-bottom: 18px; text-decoration: none; }
+    header, main {
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--card);
+      box-shadow: 0 20px 60px rgba(58, 42, 34, .07);
+    }
+    header { padding: clamp(26px, 6vw, 48px); background: var(--dark); color: #fffaf5; }
+    .mark {
+      display: grid; width: 46px; height: 46px; place-items: center;
+      border-radius: 15px 15px 15px 5px; color: var(--dark); background: #f1c873;
+      font: 700 26px Georgia, serif;
+    }
+    h1 { margin: 20px 0 8px; font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.06; letter-spacing: -.045em; }
+    header p { color: #ddd3da; }
+    main { margin-top: 18px; padding: clamp(24px, 6vw, 44px); }
+    section + section { margin-top: 34px; padding-top: 34px; border-top: 1px solid var(--line); }
+    h2 { margin: 0 0 12px; line-height: 1.25; font-size: 1.35rem; }
+    ol, ul { padding-left: 1.25rem; }
+    li + li { margin-top: 8px; }
+    .request {
+      margin-top: 20px; padding: 22px; border-radius: 18px;
+      background: #f5ead5; border: 1px solid #e5cc9d;
+    }
+    .button {
+      display: inline-block; margin-top: 10px; padding: 12px 18px;
+      border-radius: 12px; color: white; background: var(--coral);
+      font-weight: 750; text-decoration: none;
+    }
+    .warning { padding: 16px 18px; border-left: 4px solid var(--gold); background: #f8f0e4; }
+    footer { padding: 24px 4px 0; color: var(--muted); text-align: center; font-size: .86rem; }
+    @media (max-width: 600px) { body { font-size: 16px; } header, main { border-radius: 20px; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <a class="back" href="../privacy/">← Gizlilik Politikasına dön</a>
+    <header>
+      <span class="mark" aria-hidden="true">Y</span>
+      <h1>Yastık hesabını ve verilerini silme</h1>
+      <p>Yastık – Altın &amp; Döviz Takibi · Son güncelleme: 5 Ekim 2026</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>Uygulama içinden hesap silme</h2>
+        <ol>
+          <li>Yastık'ta hesabına giriş yap.</li>
+          <li><strong>Profil → Hesap ve güvenlik</strong> bölümünü aç.</li>
+          <li><strong>Hesabı ve tüm verileri sil</strong> seçeneğine dokun.</li>
+          <li>E-posta/şifre hesabında mevcut şifrenle; Google hesabında Google ile yeniden doğrulama yap.</li>
+          <li>Kalıcı silme onayını ver.</li>
+        </ol>
+        <p>
+          Kodda bulunan bu akış önce Firebase Authentication hesabını siler, ardından
+          cihazdaki yatırım kayıtlarını ve cihaz-hesap bağını temizler.
+        </p>
+      </section>
+
+      <section>
+        <h2>Silinen bilgiler</h2>
+        <ul>
+          <li>Firebase Authentication kullanıcı hesabı ve uygulamanın kullandığı hesap kimliği,</li>
+          <li>cihazdaki alış ve bozdurma işlemleri, miktarlar, tutarlar, masraflar, tarihler, notlar ve işlem yerleri,</li>
+          <li>alışlarla bozdurmalar arasındaki maliyet bağlantıları,</li>
+          <li>cihazda önbelleğe alınmış piyasa fiyatları,</li>
+          <li>eski yerel giriş hesabı ve cihaz-hesap eşleştirmesi.</li>
+        </ul>
+        <p>
+          Firebase, silinen Authentication verilerini canlı ve yedek sistemlerinden
+          kaldırırken kendi yayımladığı saklama/temizleme sürelerini uygular.
+        </p>
+      </section>
+
+      <section>
+        <h2>Bu akışla silinmeyen veya ayrıca yönetilen bilgiler</h2>
+        <ul>
+          <li>Google Play'in ödeme ve sipariş kayıtları Google'ın kurallarına göre saklanabilir.</li>
+          <li>Tema, değerleri gizleme, premium erişim ve ücretsiz alış sayacı gibi cihaz tercihleri hesap silme kodunda ayrıca temizlenmez.</li>
+          <li>Bildirim tercihi ve FCM kurulum bilgisi hesap silme kodunda ayrıca temizlenmez. Bildirimleri uygulama/telefon ayarlarından kapatabilirsin.</li>
+          <li>Daha önce başka bir uygulama veya bulut hizmetiyle paylaştığın şifreli yedek dosyaları Yastık tarafından uzaktan silinemez.</li>
+          <li>Android'in otomatik yedekleme sisteminde bulunan kopyalar işletim sistemi ve Google hesabı ayarlarına tabidir.</li>
+        </ul>
+        <p>
+          Tüm yerel uygulama verilerini kaldırmak için Android ayarlarından Yastık'ın
+          uygulama verilerini temizleyebilir veya uygulamayı kaldırabilirsin. Daha önce
+          dışarı aktardığın yedekleri seçtiğin hedeflerden ayrıca silmelisin.
+        </p>
+      </section>
+
+      <section>
+        <h2>Uygulamaya erişemiyorsan web üzerinden talep</h2>
+        <div class="request">
+          <p>
+            Hesabında kullandığın e-posta adresinden
+            <a href="mailto:yastikdestek@gmail.com?subject=Yast%C4%B1k%20hesap%20silme%20talebi&amp;body=Yast%C4%B1k%20hesab%C4%B1m%C4%B1n%20ve%20hesapla%20ili%C5%9Fkili%20verilerin%20silinmesini%20talep%20ediyorum.%0A%0AHesap%20e-posta%20adresim%3A%20">
+              yastikdestek@gmail.com
+            </a>
+            adresine “Yastık hesap silme talebi” konusuyla e-posta gönder.
+          </p>
+          <a class="button" href="mailto:yastikdestek@gmail.com?subject=Yast%C4%B1k%20hesap%20silme%20talebi&amp;body=Yast%C4%B1k%20hesab%C4%B1m%C4%B1n%20ve%20hesapla%20ili%C5%9Fkili%20verilerin%20silinmesini%20talep%20ediyorum.%0A%0AHesap%20e-posta%20adresim%3A%20">Silme talebi oluştur</a>
+        </div>
+        <p>
+          Hesabın sana ait olduğunu doğrulamak için yalnızca gerekli ek bilgiler
+          istenebilir. Destek üzerinden alınan talep manuel olarak işlenir; bu web
+          sayfası Firebase hesabını kendiliğinden silen bir backend veya form değildir.
+        </p>
+        <div class="warning">
+          <strong>Önemli:</strong> Portföy kayıtları Yastık sunucusunda bulunmadığı için
+          destek ekibi cihazındaki SQLite kayıtlarına erişemez ve bunları uzaktan
+          silemez. Web talebi Firebase Authentication hesabını hedefler; yerel kayıtlar
+          için yukarıdaki cihaz adımlarını uygulaman gerekir.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Bu sayfa JavaScript, çerez, harici font veya analiz aracı kullanmaz.
+    </footer>
+  </div>
+</body>
+</html>
