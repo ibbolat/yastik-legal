@@ -68,7 +68,7 @@
     <header>
       <span class="mark" aria-hidden="true">Y</span>
       <h1>Yastık hesabını ve verilerini silme</h1>
-      <p>Yastık – Altın &amp; Döviz Takibi · Son güncelleme: 31 Ekim 2026</p>
+      <p>Yastık – Altın &amp; Döviz Takibi · Son güncelleme: 1 Kasım 2026</p>
     </header>
 
     <main>
@@ -84,6 +84,8 @@
         <p>
           Kodda bulunan bu akış önce Firebase Authentication hesabını siler, ardından
           cihazdaki birikim ve borç/alacak kayıtlarını ve cihaz-hesap bağını temizler.
+          Firebase hesabı silindiğinde sunucudaki satın alma belirteci özetiyle
+          hesap eşleşmesini silen işlem de başlar.
         </p>
       </section>
 
@@ -91,6 +93,7 @@
         <h2>Silinen bilgiler</h2>
         <ul>
           <li>Firebase Authentication kullanıcı hesabı ve uygulamanın kullandığı hesap kimliği,</li>
+          <li>Firestore'daki Yastık Full satın alma belirteci özetiyle hesap eşleşmesi (hesap silme tetikleyicisiyle),</li>
           <li>cihazdaki alış ve bozdurma işlemleri, miktarlar, tutarlar, masraflar, tarihler, notlar ve işlem yerleri,</li>
           <li>alışlarla bozdurmalar arasındaki maliyet bağlantıları,</li>
           <li>borç/alacak kişi adları, varlık ve miktar kalemleri, tarihler, notlar ve kısmi/tam geri ödeme kayıtları,</li>
@@ -107,7 +110,7 @@
         <h2>Bu akışla silinmeyen veya ayrıca yönetilen bilgiler</h2>
         <ul>
           <li>Google Play'in ödeme ve sipariş kayıtları Google'ın kurallarına göre saklanabilir.</li>
-          <li>Tema, değerleri gizleme, premium erişim ve ücretsiz alış sayacı gibi cihaz tercihleri hesap silme kodunda ayrıca temizlenmez.</li>
+          <li>Tema, değerleri gizleme ve ücretsiz alış sayacı gibi cihaz tercihleri hesap silme kodunda ayrıca temizlenmez.</li>
           <li>Bildirim tercihi ve FCM kurulum bilgisi hesap silme kodunda ayrıca temizlenmez. Bildirimleri uygulama/telefon ayarlarından kapatabilirsin.</li>
           <li>Daha önce başka bir uygulama veya bulut hizmetiyle paylaştığın şifreli yedek dosyaları Yastık tarafından uzaktan silinemez.</li>
           <li>Android'in otomatik yedekleme sisteminde bulunan kopyalar işletim sistemi ve Google hesabı ayarlarına tabidir.</li>

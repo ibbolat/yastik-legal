@@ -193,7 +193,7 @@
     <header>
       <p class="eyebrow">Yasal bilgi</p>
       <h1>Gizlilik Politikası</h1>
-      <p class="updated">Son güncelleme: 31 Ekim 2026</p>
+      <p class="updated">Son güncelleme: 1 Kasım 2026</p>
       <p class="summary">
         Bu politika, Yastık mobil uygulamasının hangi bilgileri neden işlediğini,
         hangi kayıtların yalnızca cihazda kaldığını ve kullanılan üçüncü taraf
@@ -251,12 +251,18 @@
           </li>
           <li>
             <strong>Satın alma bilgileri:</strong> Yastık Full ürün kimliği,
-            satın alma durumu ve erişim hakkı. Ödeme kartı veya banka hesabı
-            bilgileri Yastık tarafından görülmez; ödeme Google Play tarafından yürütülür.
+            satın alma durumu, satın alma belirteci ve erişim hakkı. Satın alma
+            doğrulaması için Firebase oturum belirteci ve Google Play satın alma
+            belirteci Yastık'ın Firebase Cloud Function hizmetine gönderilir.
+            Function satın alma belirtecini Google Play Developer API ile doğrular.
+            Firestore'da belirtecin yalnızca SHA-256 özeti, Firebase kullanıcı
+            kimliği, ürün kodu ve oluşturma zamanı saklanır. Ödeme kartı veya banka
+            hesabı bilgileri Yastık tarafından görülmez; ödeme Google Play
+            tarafından yürütülür.
           </li>
           <li>
             <strong>Yerel uygulama tercihleri:</strong> tema, portföy değerlerini
-            gizleme, bildirim tercihi, premium erişim durumu ve ücretsiz alış sayacı.
+            gizleme, bildirim tercihi ve ücretsiz alış sayacı.
           </li>
         </ul>
         <p>
@@ -303,15 +309,16 @@
         </p>
         <p>
           Mevcut uygulama kodu bu birikim ve borç/alacak kayıtlarını Firebase'e veya Yastık'a ait
-          başka bir sunucuya yüklemez. Uygulamada Firestore, Firebase Realtime
-          Database, Cloud Storage ya da bu kayıtları senkronize eden bir Yastık
-          backend'i bulunmaz. Bu kayıtlar yalnızca kullanıcının isteğiyle oluşturduğu
-          yedek dosyası üzerinden cihaz dışına çıkarılabilir.
+          başka bir sunucuya yüklemez. Firestore yalnızca Yastık Full satın alma
+          belirtecinin özetiyle hesap eşleşmesini saklamak için kullanılır; portföy,
+          borç ve alacak kayıtları burada tutulmaz veya senkronize edilmez. Bu yerel
+          kayıtlar yalnızca kullanıcının isteğiyle oluşturduğu yedek dosyası üzerinden
+          cihaz dışına çıkarılabilir.
         </p>
         <p>
           Yerel veritabanının tamamının uygulama düzeyinde ayrıca şifrelendiği
-          iddia edilmemektedir. Hesap-cihaz bağı, tema/bildirim tercihleri ve premium
-          erişim gibi bazı küçük anahtar-değer kayıtları platformun güvenli saklama
+          iddia edilmemektedir. Hesap-cihaz bağı, tema/bildirim tercihleri ve ücretsiz
+          alış sayacı gibi bazı küçük anahtar-değer kayıtları platformun güvenli saklama
           altyapısını kullanan Flutter Secure Storage içinde tutulur. Cihaz kilidi,
           işletim sistemi güvenliği ve fiziksel cihaz erişimi bu nedenle önemlidir.
         </p>
@@ -358,7 +365,8 @@
           <li><strong>Google Firebase Authentication:</strong> hesap, giriş, doğrulama, şifre sıfırlama ve hesap silme.</li>
           <li><strong>Google Sign-In:</strong> kullanıcı seçerse Google hesabıyla kimlik doğrulama.</li>
           <li><strong>Firebase Cloud Messaging ve Firebase Installations:</strong> kullanıcı izin verirse bildirim teslimi ve uygulama kurulum kimliği.</li>
-          <li><strong>Google Play Billing:</strong> Yastık Full satın alma ve satın alımları geri yükleme.</li>
+          <li><strong>Google Play Billing ve Google Play Developer API:</strong> Yastık Full satın alma, geri yükleme ve satın alma doğrulaması.</li>
+          <li><strong>Firebase Cloud Functions ve Cloud Firestore:</strong> Yastık Full satın alma belirtecini doğrulama ve belirteç özetiyle Firebase hesap eşleşmesini saklama.</li>
           <li><strong>Trunçgil Finans:</strong> güncel altın, gümüş ve döviz fiyatlarının alınması.</li>
           <li><strong>Android paylaşım ve dosya seçme altyapısı:</strong> kullanıcının yedek dosyasını seçmesi veya seçtiği uygulamaya göndermesi.</li>
         </ul>
@@ -376,8 +384,12 @@
           Birikim ve borç/alacak kayıtları kullanıcı silene, uygulama verileri temizlenene veya hesap
           silme akışı tamamlanana kadar cihazda tutulur. Bazı cihazlarda işletim sistemi
           yedekleme/geri yükleme davranışı bunu etkileyebilir. Hesap verileri Firebase
-          Authentication'da hesap açık olduğu sürece tutulur; silinen Firebase hesapları
-          Google'ın yayınladığı saklama ve yedek temizleme sürelerine tabidir.
+          Authentication'da hesap açık olduğu sürece tutulur; satın alma belirteci
+          özetiyle hesap eşleşmesi de hesap silininceye kadar Firestore'da tutulur.
+          Firebase hesabı silindiğinde bu eşleşmeyi silen sunucu işlemi çalışır.
+          Google Play'in sipariş kayıtları Google'ın saklama kurallarına tabidir.
+          Silinen Firebase hesapları Google'ın yayınladığı saklama ve yedek temizleme
+          sürelerine tabidir.
         </p>
         <p>
           Firebase, Google Play ve fiyat servisiyle ağ iletişimi HTTPS/TLS üzerinden
@@ -421,8 +433,10 @@
         </p>
         <p>
           Bu akış Google Play'in ödeme kayıtlarını, cihazdaki tema/görünüm tercihini,
-          premium erişim işaretini, ücretsiz alış sayacını veya bildirim tercihini
-          temizleyen bir kod içermez. Bildirimleri ayrıca uygulama/telefon ayarlarından
+          ücretsiz alış sayacını veya bildirim tercihini temizleyen bir kod
+          içermez. Firebase hesabının silinmesi, sunucudaki satın alma belirteci
+          özetiyle hesap eşleşmesini silen işlemi başlatır. Bildirimleri ayrıca
+          uygulama/telefon ayarlarından
           kapatabilir; tüm yerel uygulama verilerini kaldırmak için Android uygulama
           verilerini temizleyebilir veya uygulamayı kaldırabilirsin. Google Play ödeme
           kayıtları Google'ın yasal ve operasyonel saklama kurallarına tabi olabilir.
