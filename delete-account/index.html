@@ -68,7 +68,7 @@
     <header>
       <span class="mark" aria-hidden="true">Y</span>
       <h1>Yastık hesabını ve verilerini silme</h1>
-      <p>Yastık – Altın &amp; Döviz Takibi · Son güncelleme: 5 Ekim 2026</p>
+      <p>Yastık – Altın &amp; Döviz Takibi · Son güncelleme: 31 Ekim 2026</p>
     </header>
 
     <main>
@@ -83,7 +83,7 @@
         </ol>
         <p>
           Kodda bulunan bu akış önce Firebase Authentication hesabını siler, ardından
-          cihazdaki yatırım kayıtlarını ve cihaz-hesap bağını temizler.
+          cihazdaki birikim ve borç/alacak kayıtlarını ve cihaz-hesap bağını temizler.
         </p>
       </section>
 
@@ -93,6 +93,7 @@
           <li>Firebase Authentication kullanıcı hesabı ve uygulamanın kullandığı hesap kimliği,</li>
           <li>cihazdaki alış ve bozdurma işlemleri, miktarlar, tutarlar, masraflar, tarihler, notlar ve işlem yerleri,</li>
           <li>alışlarla bozdurmalar arasındaki maliyet bağlantıları,</li>
+          <li>borç/alacak kişi adları, varlık ve miktar kalemleri, tarihler, notlar ve kısmi/tam geri ödeme kayıtları,</li>
           <li>cihazda önbelleğe alınmış piyasa fiyatları,</li>
           <li>eski yerel giriş hesabı ve cihaz-hesap eşleştirmesi.</li>
         </ul>
@@ -136,7 +137,7 @@
           sayfası Firebase hesabını kendiliğinden silen bir backend veya form değildir.
         </p>
         <div class="warning">
-          <strong>Önemli:</strong> Portföy kayıtları Yastık sunucusunda bulunmadığı için
+          <strong>Önemli:</strong> Birikim ve borç/alacak kayıtları Yastık sunucusunda bulunmadığı için
           destek ekibi cihazındaki SQLite kayıtlarına erişemez ve bunları uzaktan
           silemez. Web talebi Firebase Authentication hesabını hedefler; yerel kayıtlar
           için yukarıdaki cihaz adımlarını uygulaman gerekir.

@@ -193,14 +193,14 @@
     <header>
       <p class="eyebrow">Yasal bilgi</p>
       <h1>Gizlilik Politikası</h1>
-      <p class="updated">Son güncelleme: 5 Ekim 2026</p>
+      <p class="updated">Son güncelleme: 31 Ekim 2026</p>
       <p class="summary">
         Bu politika, Yastık mobil uygulamasının hangi bilgileri neden işlediğini,
         hangi kayıtların yalnızca cihazda kaldığını ve kullanılan üçüncü taraf
         hizmetlerini açıklar.
       </p>
       <div class="notice">
-        Yastık, kişisel altın ve döviz birikimlerini takip etmeye yardımcı olan
+        Yastık, kişisel altın, gümüş ve döviz birikimlerini takip etmeye yardımcı olan
         bir kayıt/takip uygulamasıdır. Banka, finans kuruluşu, aracı kurum,
         döviz bürosu veya yatırım danışmanlığı hizmeti değildir. Uygulamadaki
         fiyatlar ve hesaplamalar bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.
@@ -209,7 +209,7 @@
 
     <nav aria-label="Sayfa içeriği">
       <a href="#bilgiler">İşlenen bilgiler</a>
-      <a href="#yerel-veriler">Yerel portföy</a>
+      <a href="#yerel-veriler">Yerel kayıtlar</a>
       <a href="#bildirimler">Bildirimler</a>
       <a href="#yedekleme">Yedekleme</a>
       <a href="#silme">Hesap silme</a>
@@ -220,11 +220,13 @@
       <section id="uygulama">
         <h2>Uygulama hakkında</h2>
         <p>
-          Yastık; kullanıcının kendi girdiği altın ve döviz alışlarını,
-          bozdurmalarını, miktarlarını ve maliyetlerini cihazında kaydetmesine;
-          güncel piyasa fiyatlarından hareketle yaklaşık değer ve kâr/zarar
-          görünümü oluşturmasına yardımcı olur. Uygulama üzerinden gerçek bir
-          alım, satım, para transferi veya yatırım işlemi yapılmaz.
+          Yastık; kullanıcının kendi girdiği altın, gümüş ve döviz alışlarını,
+          bozdurmalarını, miktarlarını ve maliyetlerini; ayrıca altın, gümüş,
+          döviz veya TL cinsinden verdiği ve aldığı borçları cihazında
+          kaydetmesine yardımcı olur. Güncel piyasa fiyatlarından hareketle
+          yaklaşık değer ve kâr/zarar görünümü oluşturur. Borç/alacak kayıtları
+          Birikimlerim toplamını değiştirmez. Uygulama üzerinden gerçek bir
+          alım, satım, borç verme, geri ödeme, para transferi veya yatırım işlemi yapılmaz.
         </p>
       </section>
 
@@ -289,22 +291,25 @@
       </section>
 
       <section id="yerel-veriler">
-        <h2>Yerel olarak saklanan portföy verileri</h2>
+        <h2>Yerel olarak saklanan birikim ve borç/alacak verileri</h2>
         <p>
           Alış ve bozdurma kayıtları; varlık türü, miktar, toplam tutar, birim fiyat,
           masraf, tarih, alış/bozdurma yeri, not ve alışlarla bozdurmalar arasındaki
-          maliyet bağlantıları cihazdaki Drift/SQLite veritabanında tutulur. İndirilen
-          piyasa fiyatları da cihazda önbelleğe alınır.
+          maliyet bağlantıları cihazdaki Drift/SQLite veritabanında tutulur.
+          Borç/alacak kayıtlarında kullanıcının girdiği kişi adı, borcun yönü,
+          varlık türü, miktar, tarih, vade, not ve kısmi/tam geri ödeme bilgileri
+          aynı yerel veritabanında tutulur. İndirilen piyasa fiyatları da cihazda
+          önbelleğe alınır.
         </p>
         <p>
-          Mevcut uygulama kodu bu portföy kayıtlarını Firebase'e veya Yastık'a ait
+          Mevcut uygulama kodu bu birikim ve borç/alacak kayıtlarını Firebase'e veya Yastık'a ait
           başka bir sunucuya yüklemez. Uygulamada Firestore, Firebase Realtime
-          Database, Cloud Storage ya da portföy senkronizasyonu yapan bir Yastık
+          Database, Cloud Storage ya da bu kayıtları senkronize eden bir Yastık
           backend'i bulunmaz. Bu kayıtlar yalnızca kullanıcının isteğiyle oluşturduğu
           yedek dosyası üzerinden cihaz dışına çıkarılabilir.
         </p>
         <p>
-          Portföy veritabanının tamamının uygulama düzeyinde ayrıca şifrelendiği
+          Yerel veritabanının tamamının uygulama düzeyinde ayrıca şifrelendiği
           iddia edilmemektedir. Hesap-cihaz bağı, tema/bildirim tercihleri ve premium
           erişim gibi bazı küçük anahtar-değer kayıtları platformun güvenli saklama
           altyapısını kullanan Flutter Secure Storage içinde tutulur. Cihaz kilidi,
@@ -323,8 +328,9 @@
         <p>
           Güncel fiyatlar <strong>Trunçgil Finans</strong> tarafından sunulan HTTPS
           uç noktasından alınır. İstek, herkese açık güncel fiyat listesini getirir;
-          portföy miktarı, maliyet, not, işlem geçmişi, e-posta veya Firebase kullanıcı
-          kimliği bu isteğe eklenmez. Hizmete yapılan ağ bağlantısında IP adresi,
+          portföy veya borç miktarı, kişi adı, maliyet, not, işlem geçmişi,
+          e-posta veya Firebase kullanıcı kimliği bu isteğe eklenmez.
+          Hizmete yapılan ağ bağlantısında IP adresi,
           istek zamanı ve standart HTTP teknik bilgileri fiyat sağlayıcısı veya ağ
           altyapısı tarafından işlenebilir.
         </p>
@@ -353,7 +359,7 @@
           <li><strong>Google Sign-In:</strong> kullanıcı seçerse Google hesabıyla kimlik doğrulama.</li>
           <li><strong>Firebase Cloud Messaging ve Firebase Installations:</strong> kullanıcı izin verirse bildirim teslimi ve uygulama kurulum kimliği.</li>
           <li><strong>Google Play Billing:</strong> Yastık Full satın alma ve satın alımları geri yükleme.</li>
-          <li><strong>Trunçgil Finans:</strong> güncel altın ve döviz fiyatlarının alınması.</li>
+          <li><strong>Trunçgil Finans:</strong> güncel altın, gümüş ve döviz fiyatlarının alınması.</li>
           <li><strong>Android paylaşım ve dosya seçme altyapısı:</strong> kullanıcının yedek dosyasını seçmesi veya seçtiği uygulamaya göndermesi.</li>
         </ul>
         <p>
@@ -367,7 +373,7 @@
       <section id="saklama">
         <h2>Verilerin saklanması ve güvenliği</h2>
         <p>
-          Portföy kayıtları kullanıcı silene, uygulama verileri temizlenene veya hesap
+          Birikim ve borç/alacak kayıtları kullanıcı silene, uygulama verileri temizlenene veya hesap
           silme akışı tamamlanana kadar cihazda tutulur. Bazı cihazlarda işletim sistemi
           yedekleme/geri yükleme davranışı bunu etkileyebilir. Hesap verileri Firebase
           Authentication'da hesap açık olduğu sürece tutulur; silinen Firebase hesapları
@@ -386,7 +392,8 @@
         <h2>Yedekleme ve geri yükleme</h2>
         <p>
           Kullanıcı isterse alış, bozdurma, miktar, tutar, masraf, tarih, not ve işlem
-          yeri bilgilerini içeren <code>.ytbackup</code> dosyası oluşturabilir. Dosyanın
+          yeri bilgileriyle birlikte borç/alacak kişi adlarını, kalemlerini ve geri
+          ödemelerini içeren <code>.ytbackup</code> dosyası oluşturabilir. Dosyanın
           içeriği kullanıcı tarafından belirlenen en az sekiz karakterlik aktarım
           şifresinden Argon2id ile türetilen anahtar kullanılarak AES-256-GCM ile
           şifrelenir. Aktarım şifresi Yastık'a veya bir sunucuya gönderilmez ve uygulama
@@ -398,7 +405,7 @@
           kullanıcı karar verir. Seçilen hedefin gizlilik uygulamaları geçerlidir.
           Geçici dosya işletim sistemi uygulama önbelleğini temizleyene kadar cihazda
           kalabilir. Geri yükleme kullanıcı tarafından seçilen dosyadan ve yalnızca boş
-          bir portföye yapılır.
+          birikim ve borç kaydı bulunmayan bir cihaza yapılır.
         </p>
       </section>
 
@@ -409,8 +416,8 @@
           Profil → Hesap ve güvenlik → “Hesabı ve tüm verileri sil” yolundan işlem
           başlatılabilir. Kullanıcı yeniden kimlik doğruladıktan sonra uygulama Firebase
           Authentication hesabını siler; ardından cihazdaki alış, bozdurma, maliyet
-          bağlantıları ve önbelleğe alınan fiyat kayıtlarını temizler. Yerel eski hesap
-          kaydı ile cihaz-hesap bağı da kaldırılır.
+          bağlantıları, borç/alacak kayıtları, geri ödemeler ve önbelleğe alınan
+          fiyat kayıtlarını temizler. Yerel eski hesap kaydı ile cihaz-hesap bağı da kaldırılır.
         </p>
         <p>
           Bu akış Google Play'in ödeme kayıtlarını, cihazdaki tema/görünüm tercihini,
@@ -424,7 +431,7 @@
         <p>
           Uygulamaya erişemiyorsan <a href="../delete-account/">hesap silme talebi
           sayfasını</a> kullanabilirsin. Web sayfası otomatik silme sistemi değildir;
-          resmi destek e-postası üzerinden talep oluşturur. Cihazda kalan portföy
+          resmi destek e-postası üzerinden talep oluşturur. Cihazda kalan birikim ve borç/alacak
           kayıtlarına Yastık uzaktan erişemediği için bu kayıtlar web talebiyle uzaktan
           silinemez.
         </p>
